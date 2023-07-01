@@ -21,11 +21,11 @@ with st.sidebar:
 
     depends = st.slider('Выберете количество иждивенцев на попечении клиента', min_value=0, max_value=30, step=1)
 
-    monthly_income = st.number_input('Введите сумму ежемесячного дохода клиента', min_value=0.0001)
+    monthly_income = st.number_input('Введите сумму ежемесячного дохода клиента', min_value=0.01)
 
     monthly_expenses = st.number_input('Введите сумму ежемесячных расходов клиента', min_value=0.0)
 
-    balance = st.number_input('Введите общий баланс средств клиента на всех картах', min_value=0.0)
+    balance = st.slider('Введите долю остатка денежных средств на всех картах клиента по отношению к его кредитным лимитам', min_value=0.0, max_value=1, step=0.01)
 
     loans_number = st.number_input('Введите количество открытых кредитов клиента, включая кредитные карты', min_value=0)
 
@@ -36,8 +36,6 @@ with st.sidebar:
     debt_ratio = monthly_expenses / monthly_income
 
     overdue_ratio = npl * loans_number
-
-    net_balance = monthly_income - monthly_expenses + balance
 
     run_button = st.button('Построить прогноз')
 
@@ -51,7 +49,6 @@ if run_button:
         'NumberOfDependents': [depends],
         'NumberOfTime30-89DaysPastDueNotWorse': [impairment_loans],
         'MonthlyExpenses': [monthly_expenses],
-        'NetBalance': [net_balance],
         'OverdueRatio': [overdue_ratio]
     }
     df = pd.DataFrame.from_dict(params)
