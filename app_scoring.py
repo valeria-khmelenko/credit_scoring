@@ -14,12 +14,12 @@ st.header("Проверьте, стоит ли выдавать клиенту �
 
 
 img = Image.open('images/main_image.jpeg')
-st.image(img, width=200)
+st.image(img, width=400)
 
 with st.sidebar:
     age = st.slider('Выберете возраст клиента', min_value=18, max_value=100, step=1)
 
-    depends = st.slider('Выберете количество иждивенцев на попечении клиента', min_value=0)
+    depends = st.slider('Выберете количество иждивенцев на попечении клиента', min_value=0, max_value=30, step=1)
 
     monthly_income = st.number_input('Введите сумму ежемесячного дохода клиента', min_value=0.0001)
 
@@ -41,24 +41,24 @@ with st.sidebar:
 
     run_button = st.button('Построить прогноз')
 
-st.header('Результат')
-
 if run_button:
     params = {
         'RevolvingUtilizationOfUnsecuredLines': [balance],
         'age': [age],
+        'DebtRatio': [debt_ratio],
+        'MonthlyIncome': [monthly_income],
+        'NumberOfOpenCreditLinesAndLoans': [loans_number],
+        'NumberOfDependents': [depends],
         'NumberOfTime30-89DaysPastDueNotWorse': [impairment_loans],
         'MonthlyExpenses': [monthly_expenses],
         'NetBalance': [net_balance],
-        'DebtRatio': [debt_ratio],
-        'OverdueRatio': [overdue_ratio],
-        'MonthlyIncome': [monthly_income],
-        'NumberOfOpenCreditLinesAndLoans': [loans_number],
-        'NumberOfDependents': [depends]
+        'OverdueRatio': [overdue_ratio]
     }
     df = pd.DataFrame.from_dict(params)
     rjt = model.predict(df)[0]
-
+    
+    st.header('Результат')
+    
     if rjt:
         placeholder.markdown('Рекомендуется отказать клиенту в новом кредите')
         img = Image.open('images/rejected.png')
