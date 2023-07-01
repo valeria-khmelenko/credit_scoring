@@ -34,7 +34,8 @@
 
 ## Модель
 
-RandomForestClassifier(с гиперпараметрами criterion = 'log_loss', n_estimators= 200, max_depth=7, random_state=12345)
+В качестве финальной модели использовалась модель RandomForestClassifier(подбор гиперпараметров с помощью GridSearchCV).
+Балансировка классов производилась с помощью downsampling.
 
 ## Метрика
 ROC_AUC (0.77 на тестовой выборке)
