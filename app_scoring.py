@@ -55,11 +55,11 @@ if run_button:
         'OverdueRatio': [overdue_ratio]
     }
     df = pd.DataFrame.from_dict(params)
-    rjt = model.predict(df)[0]
+    prediction = model.predict(df)[0]
     
     st.header('Результат')
     
-    if rjt:
+    if prediction = 1:
         st.error('Рекомендуется отказать клиенту в новом кредите')
         img = Image.open('images/rejected.png')
         st.image(img, width=200)
