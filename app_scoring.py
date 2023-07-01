@@ -60,10 +60,10 @@ if run_button:
     st.header('Результат')
     
     if rjt:
-        placeholder.markdown('Рекомендуется отказать клиенту в новом кредите')
+        st.placeholder.markdown('Рекомендуется отказать клиенту в новом кредите')
         img = Image.open('images/rejected.png')
         st.image(img, width=20)
     else:
-        placeholder.markdown('Новый кредит может бьть выдан клиенту')
+        st.placeholder.markdown('Новый кредит может бьть выдан клиенту')
         img = Image.open('images/approved.jpg')
         st.image(img, width=20)
