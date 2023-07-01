@@ -59,7 +59,7 @@ if run_button:
     
     st.header('Результат')
     
-    if prediction = 1:
+    if prediction == 1:
         st.error('Рекомендуется отказать клиенту в новом кредите')
         img = Image.open('images/rejected.png')
         st.image(img, width=200)
