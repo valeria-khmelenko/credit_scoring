@@ -62,8 +62,8 @@ if run_button:
     if rjt:
         st.error('Рекомендуется отказать клиенту в новом кредите')
         img = Image.open('images/rejected.png')
-        st.image(img, width=50)
+        st.image(img, width=200)
     else:
         st.success('Новый кредит может бьть выдан клиенту')
         img = Image.open('images/approved.jpg')
-        st.image(img, width=50)
+        st.image(img, width=200)
